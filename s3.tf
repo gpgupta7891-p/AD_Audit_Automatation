@@ -2,11 +2,6 @@ resource "aws_s3_bucket" "scripts_bucket" {
   bucket = "ps-scripts-bucket"
 }
 
-/*resource "aws_s3_bucket_acl" "example" {
-  bucket = aws_s3_bucket.scripts_bucket.id
-}*/
-
-
 resource "aws_s3_object" "scripts" {
   for_each = { for path in var.file_names : path => path }
   bucket   = aws_s3_bucket.scripts_bucket.id

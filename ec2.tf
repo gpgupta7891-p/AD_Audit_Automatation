@@ -1,4 +1,3 @@
-
 data "aws_ami" "windows" {
   most_recent = true
   filter {
