@@ -27,7 +27,7 @@ foreach($TargetOU in $TargetOUs)
       {
         $time = $currentUser.LastLogon
       }
-	  if($currentUser.LastLogonTimestamp -gt $time) 
+	    if($currentUser.LastLogonTimestamp -gt $time) 
       {
         $time = $currentUser.LastLogonTimestamp
       }
@@ -44,7 +44,6 @@ AWS Cloud Team
 "@
     $useremail = $user.mail
     
-    # Send Email - change the values if needed.
     Send-MailMessage -Credential $mycreds `
     -useSSL `
     -smtpServer 'email-smtp.eu-west-2.amazonaws.com' `
@@ -58,16 +57,16 @@ AWS Cloud Team
     
     $dt = [DateTime]::FromFileTime($time)
     $row = $user.Name+","+$user.SamAccountName+","+$user.Description+","+$user.Enabled+","+$user.Created+$user.mail+","+$dt
-	$global:Object = New-Object PSObject
-	Add-Member -InputObject $Object -NotePropertyName "Name" -NotePropertyValue $user.Name
-	Add-Member -InputObject $Object -NotePropertyName "SamAccountName" -NotePropertyValue $user.SamAccountName
+	  $global:Object = New-Object PSObject
+	  Add-Member -InputObject $Object -NotePropertyName "Name" -NotePropertyValue $user.Name
+	  Add-Member -InputObject $Object -NotePropertyName "SamAccountName" -NotePropertyValue $user.SamAccountName
     Add-Member -InputObject $Object -NotePropertyName "Description" -NotePropertyValue $user.Description
     Add-Member -InputObject $Object -NotePropertyName "Enabled" -NotePropertyValue $user.Enabled
     Add-Member -InputObject $Object -NotePropertyName "Created" -NotePropertyValue $user.Created
     Add-Member -InputObject $Object -NotePropertyName "mail" -NotePropertyValue $user.mail
-	Add-Member -InputObject $Object -NotePropertyName "LastLogon" -NotePropertyValue $dt.ToString("dd/MMM/yyyy")
+	  Add-Member -InputObject $Object -NotePropertyName "LastLogon" -NotePropertyValue $dt.ToString("dd/MMM/yyyy")
 	
-	Write-Output $global:Object
+	  Write-Output $global:Object
     Clear-Variable useremail
     Clear-Variable userid
     $time = 0
