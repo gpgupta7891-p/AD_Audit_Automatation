@@ -1,3 +1,4 @@
+##################################################################################################
 resource "aws_ssm_document" "user_access_report" {
   name          = "user-access-report"
   document_type = "Command"
@@ -45,6 +46,7 @@ resource "aws_ssm_association" "user_access_report" {
     values = ["AD_Management"]
   }
 }
+##################################################################################################
 
 resource "aws_ssm_document" "reminder_script" {
   name          = "reminder-script"
@@ -87,6 +89,7 @@ resource "aws_ssm_association" "reminder_script" {
     values = ["AD_Management"]
   }
 }
+##################################################################################################
 
 resource "aws_ssm_document" "users_disable_script" {
   name          = "users-disable-script"
@@ -129,6 +132,7 @@ resource "aws_ssm_association" "users_disable_script" {
     values = ["AD_Management"]
   }
 }
+##################################################################################################
 
 resource "aws_ssm_document" "users_delete_script" {
   name          = "users-delete-script"
@@ -171,6 +175,7 @@ resource "aws_ssm_association" "users_delete_script" {
     values = ["AD_Management"]
   }
 }
+##################################################################################################
 
 resource "aws_ssm_document" "move_reports_to_s3" {
   name          = "move-reports-to-s3"
@@ -213,3 +218,4 @@ resource "aws_ssm_association" "move_reports_to_s3" {
     values = ["AD_Management"]
   }
 }
+##################################################################################################
