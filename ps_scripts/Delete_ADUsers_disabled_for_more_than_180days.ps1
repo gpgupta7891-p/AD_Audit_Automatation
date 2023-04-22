@@ -24,7 +24,7 @@ foreach($TargetOU in $TargetOUs)
       {
         $time = $currentUser.LastLogon
       }
-	  if($currentUser.LastLogonTimestamp -gt $time) 
+	    if($currentUser.LastLogonTimestamp -gt $time) 
       {
         $time = $currentUser.LastLogonTimestamp
       }
@@ -34,19 +34,18 @@ foreach($TargetOU in $TargetOUs)
 
     $dt = [DateTime]::FromFileTime($time)
     $row = $user.Name+","+$user.SamAccountName+","+$user.Description+","+$user.Enabled+","+$user.Created+$user.mail+","+$dt+","+$user.MemberOf
-	$global:Object = New-Object PSObject
+	  $global:Object = New-Object PSObject
 
-	Add-Member -InputObject $Object -NotePropertyName "Name" -NotePropertyValue $user.Name
-	Add-Member -InputObject $Object -NotePropertyName "SamAccountName" -NotePropertyValue $user.SamAccountName
+	  Add-Member -InputObject $Object -NotePropertyName "Name" -NotePropertyValue $user.Name
+	  Add-Member -InputObject $Object -NotePropertyName "SamAccountName" -NotePropertyValue $user.SamAccountName
     Add-Member -InputObject $Object -NotePropertyName "Description" -NotePropertyValue $user.Description
     Add-Member -InputObject $Object -NotePropertyName "Enabled" -NotePropertyValue $user.Enabled
     Add-Member -InputObject $Object -NotePropertyName "Created" -NotePropertyValue $user.Created
     Add-Member -InputObject $Object -NotePropertyName "mail" -NotePropertyValue $user.mail
-	Add-Member -InputObject $Object -NotePropertyName "LastLogon" -NotePropertyValue $dt.ToString("dd/MMM/yyyy")
+	  Add-Member -InputObject $Object -NotePropertyName "LastLogon" -NotePropertyValue $dt.ToString("dd/MMM/yyyy")
     Add-Member -InputObject $Object -NotePropertyName "MemberOf" -NotePropertyValue (($user.memberof | Out-String).Trim() -replace ',.*dc=com',';' -replace 'CN=',' ')
 
-	Write-Output $global:Object
-
+	  Write-Output $global:Object
     $time = 0
   }
 }
