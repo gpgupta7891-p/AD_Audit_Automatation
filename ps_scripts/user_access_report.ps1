@@ -61,7 +61,7 @@ foreach($TargetOU in $TargetOUs)
  
 $CSVFile = "Users_Access_and_Last_Logon_Report-$((Get-Date).ToString('MM-dd-yyyy')).csv"
 
-Get-ADUsersLastLogon | Export-CSV -Path "C:\Scripts\UserAccessReport\$CSVFile" -NoTypeInformation
+Get-ADUsersLastLogon | Export-CSV -Path "C:\Scripts\Reports\$CSVFile" -NoTypeInformation
 
 $smtppassword = Get-Content 'C:\Scripts\svc_prd_tasksch\securestringsmtppwd.txt' | ConvertTo-SecureString
 [PSCredential] $mycreds = New-Object System.Management.Automation.PSCredential ("AZZZZZZZZZZZZZZZ", $smtppassword)
@@ -84,4 +84,4 @@ Send-MailMessage -Credential $mycreds `
 -to 'gpgupta7891@gmail.com' `
 -subject 'User Access and Last Logon Report' `
 -body $messagebody `
--Attachments C:\Scripts\UserAccessReport\$CSVFile
+-Attachments C:\Scripts\Reports\$CSVFile

@@ -51,7 +51,7 @@ foreach($TargetOU in $TargetOUs)
 }
 
 $CSVFile = "ADUsers_Deleted_Report-$((Get-Date).ToString('MM-dd-yyyy')).csv"
-Get-ADUsersLastLogon | Export-CSV -Path "C:\Scripts\UserLastLogonReport\$CSVFile" -NoTypeInformation
+Get-ADUsersLastLogon | Export-CSV -Path "C:\Scripts\Reports$CSVFile" -NoTypeInformation
 
 if($global:Object -ne $null)
 { 
@@ -75,7 +75,7 @@ Send-MailMessage -Credential $mycreds `
 -to 'gpgupta7891@gmail.com' `
 -subject 'Citrix Users Audit - Deleted from AD' `
 -body $messagebody `
--Attachments C:\Scripts\UserLastLogonReport\$CSVFile
+-Attachments C:\Scripts\Reports\$CSVFile
 }
 else
 {
